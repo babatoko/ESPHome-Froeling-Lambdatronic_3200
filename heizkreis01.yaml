@@ -1,7 +1,7 @@
 sensor:  
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Vorlauf-Isttemperatur"
+    name: "${name} HK1 - Actual flow temperature"
     id: ${name}_HK1_Vorlauf_Isttemperatur
     register_type: read
     address: 1030
@@ -14,7 +14,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Vorlauf-Solltemperatur"
+    name: "${name} HK1 - Flow target temperature"
     id: ${name}_HK1_Vorlauf_Solltemperatur
     register_type: read
     address: 1031
@@ -28,7 +28,7 @@ sensor:
 binary_sensor:
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Pumpe AN AUS"
+    name: "${name} HK1 - Pump ON OFF"
     id: ${name}_HK1_Pumpe_AN_AUS
     register_type: coil
     #address: 999 # Heizkreispumpe 0
@@ -37,7 +37,7 @@ binary_sensor:
 number:
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Gewünschte Vorlauf-temperatur bei -10°C Außentemperatur"
+    name: "${name} HK1 - Desired flow temperature at -10°C outdoor temperature"
     id: ${name}_HK1_Vorlauf_Temperatur_minus_10C_Aussentemperatur
     address: 1032
     unit_of_measurement: "°C"
@@ -48,7 +48,7 @@ number:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Gewünschte Vorlauf-temperatur bei +10°C Außentemperatur"
+    name: "${name} HK1 - Desired flow temperature at +10°C outdoor temperature"
     id: ${name}_HK1_Vorlauf_Temperatur_10C_Aussentemperatur
     address: 1031
     unit_of_measurement: "°C"
@@ -59,7 +59,7 @@ number:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Heizkreispumpe ausschalten wenn Vorlauf Soll kleiner ist als"
+    name: "${name} HK1 - Turn off the heating circuit pump when the desired flow temperature is lower than"
     id: ${name}_HK1_Heizkreispumpe_ausschalten_wenn_Vorlauf_Soll_kleiner_ist_als
     address: 1039
     unit_of_measurement: "°C"
@@ -70,7 +70,7 @@ number:
     
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Absenkung der Vorlauftemperatur im Absenkbetrieb"
+    name: "${name} HK1 - Reduction of the flow temperature in setback mode"
     id: ${name}_HK1_Absenkung_der_Vorlauftemperatur_im_Absenkbetrieb
     address: 1033
     unit_of_measurement: "°C"
@@ -81,8 +81,7 @@ number:
     
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Außentemperatur, unter der die Heizkreispumpe im Heizbetrieb
-einschaltet"
+    name: "${name} HK1 - Outdoor temperature below which the heating circuit pump switches on in heating mode"
     id: ${name}_HK1_Aussentemperatur_unter_der_die_Heizkreispumpe_im_Heizbetrieb_einschaltet
     address: 1036
     unit_of_measurement: "°C"
@@ -93,7 +92,7 @@ einschaltet"
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Außentemperatur, unter der die Heizkreispumpe im Absenkbetrieb einschaltet"
+    name: "${name} HK1 - Outdoor temperature below which the heating circuit pump switches on in setback mode"
     id: ${name}_HK1_Aussentemperatur_unter_der_die_Heizkreispumpe_im_Absenkbetrieb_einschaltet
     address: 1037
     unit_of_measurement: "°C"
@@ -104,7 +103,7 @@ einschaltet"
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Frostschutztemperatur"
+    name: "${name} HK1 - Frost protection temperature"
     id: ${name}_HK1_Frostschutztemperatur
     address: 1038
     unit_of_measurement: "°C"
@@ -115,7 +114,7 @@ einschaltet"
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Temp. am Puffer oben ab der der Überhitzungsschutz aktiv wird"
+    name: "${name} HK1 - Temp. at the top of the buffer at which the overheating protection is activated"
     id: ${name}_HK1_Temp_am_Puffer_oben_ab_der_der_Ueberhitzungsschutz_aktiv_wird
     address: 1047
     unit_of_measurement: "°C"
@@ -126,14 +125,14 @@ einschaltet"
 select:
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} HK1 - Betriebsart"
+    name: "${name} HK1 - Operating mode"
     id: ${name}_HK1_Betriebsart
     address: 8046
     value_type: U_WORD
     optionsmap:
-      "Aus": 0
-      "Automatik": 1
-      "Extraheizen": 2
-      "Absenken": 3
-      "Dauerabsenken": 4
+      "Off": 0
+      "Automatic": 1
+      "boost heating": 2
+      "lowering": 3
+      "Continuous lowering": 4
       "Partybetrieb": 5
