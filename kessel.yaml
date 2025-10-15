@@ -25,7 +25,7 @@ sensor:
  
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Verbleibende Heizstunden bis zur Asche entleeren Warnung"
+    name: "${name} Hours remaining before ash emptying warning"
     id: ${name}_Verbleibende_Heizstunden_bis_zur_Asche_entleeren_Warnung
     register_type: read
     address: 86
@@ -34,7 +34,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Saugzug - Ansteuerung"
+    name: "${name} Exhaust fan control"
     id: ${name}_Saugzug_Ansteuerung
     register_type: read
     address: 13
@@ -43,7 +43,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Saugzugdrehzahl"
+    name: "${name} Exhaust fan speed"
     id: ${name}_Saugzugdrehzahl
     register_type: read
     address: 6
@@ -52,7 +52,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Sauerstoffregler"
+    name: "${name} Oxygen controller"
     id: ${name}_Sauerstoffregler
     register_type: read
     address: 16
@@ -61,7 +61,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Restsauerstoffgehalt"
+    name: "${name} Residual O₂ level"
     id: ${name}_Restsauerstoffgehalt
     register_type: read
     address: 3
@@ -73,7 +73,7 @@ sensor:
   
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Rücklauffühler"
+    name: "${name} Return temperature sensor"
     id: ${name}_Ruecklauffuehler
     register_type: read
     address: 9
@@ -95,7 +95,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Sekundärluft"
+    name: "${name} Primary air controller"
     id: ${name}_Sekundaerluft
     register_type: read
     address: 12
@@ -104,7 +104,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Betriebsstunden"
+    name: "${name} Operating hours"
     id: ${name}_Betriebsstunden
     register_type: read
     address: 20
@@ -113,7 +113,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Stunden seit letzter Wartung"
+    name: "${name} Operating hours since last service"
     id: ${name}_Stunden_seit_letzter_Wartung
     register_type: read
     address: 55
@@ -122,7 +122,7 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: ${modbus_controller_id}
-    name: "${name} Betriebsstunden in der Feuererhaltung"
+    name: "${name} Operating hours in fire maintenance mode"
     id: ${name}_Betriebsstunden_in_der_Feuererhaltung
     register_type: read
     address: 24
@@ -131,7 +131,7 @@ sensor:
 
 binary_sensor:
   - platform: template
-    name: "${name} Kesselzustand Heizen"
+    name: "${name} Boiler status: Heating"
     id: ${name}_Kesselzustand_Heizen
     lambda: |-
       if (id(${name}_Kesselzustand).state == "Heizen") {
